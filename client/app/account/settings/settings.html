@@ -4,9 +4,9 @@
       <h1>Change Password</h1>
     </div>
     <div class="col-sm-12">
-      <form class="form" name="form" ng-submit="vm.changePassword(form)" novalidate>
-
-        <div class="form-group">
+      <md-content layout-padding>
+      <form name="settingsForm" ng-submit="vm.changePassword(form)" novalidate>
+        <md-input-container class="md-block" flex-gt-xs>
           <label>Current Password</label>
 
           <input type="password" name="password" class="form-control" ng-model="vm.user.oldPassword"
@@ -14,9 +14,12 @@
           <p class="help-block" ng-show="form.password.$error.mongoose">
               {{ vm.errors.other }}
           </p>
-        </div>
+          <div ng-messages="settingsForm.$error">
+            <div ng-message="required">This is required.</div>
+          </div>
+        </md-input-container>
 
-        <div class="form-group">
+      <md-input-container class="md-block" flex-gt-xs>
           <label>New Password</label>
 
           <input type="password" name="newPassword" class="form-control" ng-model="vm.user.newPassword"
@@ -26,9 +29,12 @@
              ng-show="(form.newPassword.$error.minlength || form.newPassword.$error.required) && (form.newPassword.$dirty || vm.submitted)">
             Password must be at least 3 characters.
           </p>
-        </div>
+          <div ng-messages="settingsForm.$error">
+            <div ng-message="required">This is required.</div>
+          </div>
+        </md-input-container>
 
-        <div class="form-group">
+        <md-input-container class="md-block" flex-gt-xs>
           <label>Confirm New Password</label>
 
           <input type="password" name="confirmPassword" class="form-control" ng-model="vm.user.confirmPassword"
@@ -39,13 +45,17 @@
              ng-show="form.confirmPassword.$error.match && vm.submitted">
             Passwords must match.
           </p>
-
-        </div>
+          <div ng-messages="settingsForm.$error">
+            <div ng-message="required">This is required.</div>
+          </div>
+          </md-input-container>
 
         <p class="help-block"> {{ vm.message }} </p>
 
         <button class="btn btn-lg btn-primary" type="submit">Save changes</button>
+
       </form>
+    </md-content>
     </div>
   </div>
 </div>
