@@ -1,1 +1,111 @@
-<div>This is the tournament view.</div>
+<md-content layout-padding flex-offset="15" flex="70">
+  <md-list>
+    <md-header class="md-no-sticky">Tournaments</md-header>
+    <hr>
+    <md-list-item class="md-3-line" ng-click="goToTournament(tournament)" ng-repeat="tournament in tournaments">
+      <div class="md-list-item-text" layout="column">
+        <h3>{{tournament.title}}</h3>
+        <p>{{tournament.date}}</p>
+        <p>{{tournament.location}}</p>
+      </div>
+      <div ng-if="isAdmin()">
+        <!-- <md-switch ng-model="tournament.enabled">{{tournament.enabled ? "Sichtbar" : "Unsichtbar"}}</md-switch> -->
+        <md-button ng-click="deleteTournament(tournament)" class="md-icon-button" aria-label="Delete">
+          <i class="fa fa-trash-o"></i>
+          <md-tooltip md-direction="down">Delete</md-tooltip>
+        </md-button>
+      </div>
+    </md-list-item>
+  </md-list>
+</md-content>
+
+<md-content layout-padding flex-offset="30" flex="40" ng-if="isAdmin()">
+  <form name="createTournamentForm" style="margin-bottom:10px;">
+    <h4>New Tournament:</h4>
+    <md-input-container class="md-block">
+      <label>Title</label>
+      <input required ng-model="tournament.title" type="text">
+      <div ng-messages="createTournamentForm.title.$error" role="alert">
+        <div ng-message="required">Title required.</div>
+      </div>
+    </md-input-container class="md-block">
+    <div layout="row">
+      <md-input-container flex class="md-block">
+        <label>Location</label>
+        <input required ng-model="tournament.location" type="text">
+        <div ng-messages="createTournamentForm.location.$error" role="alert">
+          <div ng-message="required">Location required.</div>
+        </div>
+      </md-input-container>
+      <md-input-container flex class="md-block">
+        <label>Date</label>
+        <input required ng-model="tournament.date" type="text">
+        <div ng-messages="createTournamentForm.date.$error" role="alert">
+          <div ng-message="required">Date required.</div>
+          <div ng-message="required">Format: DD-MM-YYYY</div>
+        </div>
+      </md-input-container>
+    </div>
+    <div layout="row">
+      <md-input-container flex class="md-block">
+        <label>Format</label>
+        <input required ng-model="tournament.format" type="text">
+        <div ng-messages="createTournamentForm.date.$error" role="alert">
+          <div ng-message="required">Format required.</div>
+        </div>
+      </md-input-container>
+      <md-input-container flex class="md-block">
+        <label>Edition</label>
+        <input required ng-model="tournament.edition" type="text">
+        <div ng-messages="createTournamentForm.date.$error" role="alert">
+          <div ng-message="required">Edition required.</div>
+        </div>
+      </md-input-container>
+    </div>
+    <div layout="row">
+      <md-input-container flex class="md-block">
+        <label>REL</label>
+        <input required ng-model="tournament.rel" type="text">
+        <div ng-messages="createTournamentForm.rel.$error" role="alert">
+          <div ng-message="required">REL required.</div>
+        </div>
+      </md-input-container>
+      <md-input-container flex class="md-block">
+        <label>Price</label>
+        <input required ng-model="tournament.price" type="text">
+        <div ng-messages="createTournamentForm.date.$error" role="alert">
+          <div ng-message="required">Price required.</div>
+        </div>
+      </md-input-container>
+    </div>
+    <div layout="row">
+      <md-input-container flex class="md-block">
+        <label>Entry Time</label>
+        <input required ng-model="tournament.entryTime" type="text">
+        <div ng-messages="createTournamentForm.date.$error" role="alert">
+          <div ng-message="required">Entry Time required.</div>
+        </div>
+      </md-input-container>
+      <md-input-container flex class="md-block">
+        <label>Start Time</label>
+        <input required ng-model="tournament.startTime" type="text">
+        <div ng-messages="createTournamentForm.date.$error" role="alert">
+          <div ng-message="required">Please state a start time.</div>
+        </div>
+      </md-input-container>
+    </div>
+    <md-input-container flex class="md-block">
+      <label>Info</label>
+      <input required ng-model="tournament.info" type="text">
+      <div ng-messages="createTournamentForm.info.$error" role="alert">
+        <div ng-message="required">Please write some info.</div>
+      </div>
+    </md-input-container>
+
+    <div layout="row" layout-align="end none">
+      <md-button aria-label="Add" ng-click="createTournament()" class="md-raised md-primary">
+        <i class="fa fa-floppy-o"></i> Create
+      </md-button>
+    </div>
+  </form>
+</md-content>

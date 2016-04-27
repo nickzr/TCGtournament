@@ -8,11 +8,11 @@
     <div class="col-sm-12">
       <md-content layout-padding>
         <div>
-      <form name="loginForm" ng-submit="vm.login(form)" novalidate>
+      <form name="loginForm" novalidate>
         <md-input-container class="md-block" flex-gt-xs>
           <label>Email</label>
 
-          <input name="email" ng-model="vm.user.email" required>
+          <input name="email" ng-model="user.email" required>
           <div ng-messages="loginForm.$error">
             <div ng-message="required">This is required.</div>
           </div>
@@ -21,14 +21,14 @@
         <md-input-container class="md-block" flex-gt-xs>
           <label>Password</label>
 
-          <input type="password" name="password" class="form-control" ng-model="vm.user.password" required>
+          <input type="password" name="password" class="form-control" ng-model="user.password" required>
           <div ng-messages="projectForm.description.$error">
             <div ng-message="required">This is required.</div>
           </div>
         </md-input-container>
 
           <div layout="row">
-          <md-button class="md-raised">Login</md-button>
+          <md-button class="md-raised" ng-click="login(loginForm)">Login</md-button>
           <md-button class="md-raised" ui-sref="signup">Register</md-button>
         </div>
 

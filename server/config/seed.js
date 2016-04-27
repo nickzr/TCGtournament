@@ -6,6 +6,38 @@
 'use strict';
 import Thing from '../api/thing/thing.model';
 import User from '../api/user/user.model';
+import Tournament from '../api/tournament/tournament.model';
+
+Tournament.find({}).removeAsync()
+  .then(() => {
+    Tournament.create({
+      title: 'Sealed Tournament',
+      date: '07.05.2016',
+      format: 'Sealed',
+      edition: 'Current Edition',
+      rel: 'competitive',
+      location: 'Jugendhaus EXXE in Flensburg',
+      entryTime: 'At 9 PM',
+      startTime: '10 PM',
+      price: '25 Euro',
+      info: 'This is a non-profit tournament!' +
+      ' Dafür bekommt ihr 6 Booster für das Event im Swissformat und habt die Chance auf reichlich Boosterpreise.' +
+      ' Nach spielerangepasster Rundenzahl werden die Preise gemäß der Finalstandings verteilt.' +
+      ' Anschließend folgt der Cut auf die Top 8 und ein Draft, in dem das Bye für den RPTQ im KO System ausgespielt.',
+      players: [{
+        firstName: 'Jan',
+        lastName: 'Terlinden',
+        DCI: '123456789',
+        email: 'janterlinden@gmx.de'
+      }, {
+        firstName: 'Marc',
+        lastName: 'Petersen',
+        DCI: '123456789',
+        email: 'mep@gmx.de'
+      }],
+      active: Boolean
+    });
+  });
 
 Thing.find({}).removeAsync()
   .then(() => {

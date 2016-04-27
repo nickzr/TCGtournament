@@ -7,7 +7,7 @@ angular.module('tcgtournamentApp')
         url: '/login',
         templateUrl: 'app/account/login/login.html',
         controller: 'LoginController',
-        controllerAs: 'vm'
+        //controllerAs: 'vm'
       })
       .state('logout', {
         url: '/logout?referrer',
@@ -25,13 +25,13 @@ angular.module('tcgtournamentApp')
         url: '/signup',
         templateUrl: 'app/account/signup/signup.html',
         controller: 'SignupController',
-        controllerAs: 'vm'
+        //controllerAs: 'vm'
       })
       .state('settings', {
         url: '/settings',
         templateUrl: 'app/account/settings/settings.html',
         controller: 'SettingsController',
-        controllerAs: 'vm',
+        //controllerAs: 'vm',
         authenticate: true
       });
   })

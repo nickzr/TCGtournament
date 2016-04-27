@@ -1,6 +1,30 @@
 'use strict';
 
-class SettingsController {
+angular.module('tcgtournamentApp')
+  .controller('SettingsController', function($scope, Auth){
+    $scope.errors = {};
+    $scope.submitted = false;
+
+    $scope.Auth = Auth;
+
+    $scope.changePassword = function(form){
+      $scope.submitted = true;
+
+      if (form.$valid) {
+        $scope.Auth.changePassword($scope.user.oldPassword, $scope.user.newPassword)
+          .then(() => {
+            $scope.message = 'Password successfully changed.';
+          })
+          .catch(() => {
+            form.password.$setValidity('mongoose', false);
+            $scope.errors.other = 'Incorrect password';
+            $scope.message = '';
+          });
+    }
+  }
+});
+
+/*class SettingsController {
   constructor(Auth) {
     this.errors = {};
     this.submitted = false;
@@ -26,4 +50,4 @@ class SettingsController {
 }
 
 angular.module('tcgtournamentApp')
-  .controller('SettingsController', SettingsController);
+  .controller('SettingsController', SettingsController);*/

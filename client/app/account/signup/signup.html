@@ -5,23 +5,23 @@
     </div>
     <div class="col-sm-12">
         <md-content layout-padding>
-          <form name="signupForm" ng-submit="vm.register(form)" novalidate>
-            <md-input-container class="md-block" ng-class="{ 'has-success': form.name.$valid && vm.submitted,
-                                            'has-error': form.name.$invalid && vm.submitted }">
+          <form name="signupForm" novalidate>
+            <md-input-container class="md-block" ng-class="{ 'has-success': form.name.$valid && submitted,
+                                            'has-error': form.name.$invalid && submitted }">
             <label>Name</label>
 
-            <input type="text" name="name" class="form-control" ng-model="vm.user.name"
+            <input type="text" name="name" class="form-control" ng-model="user.name"
                  required/>
                  <div ng-messages="signupForm.description.$error">
                    <div ng-message="required">A name is required.</div>
                  </div>
           </md-input-container>
 
-            <md-input-container class="md-block" ng-class="{ 'has-success': form.email.$valid && vm.submitted,
-                                            'has-error': form.email.$invalid && vm.submitted }">
+            <md-input-container class="md-block" ng-class="{ 'has-success': form.email.$valid && submitted,
+                                            'has-error': form.email.$invalid && submitted }">
             <label>Email</label>
 
-            <input type="email" name="email" class="form-control" ng-model="vm.user.email"
+            <input type="email" name="email" class="form-control" ng-model="user.email"
                  required
                  mongoose-error/>
                  <div ng-messages="signupForm.description.$error">
@@ -29,11 +29,11 @@
                  </div>
           </md-input-container>
 
-       <md-input-container ng-class="{ 'has-success': form.password.$valid && vm.submitted,
-                                            'has-error': form.password.$invalid && vm.submitted }">
+       <md-input-container ng-class="{ 'has-success': form.password.$valid && submitted,
+                                            'has-error': form.password.$invalid && submitted }">
           <label>Password</label>
 
-          <input type="password" name="password" class="form-control" ng-model="vm.user.password"
+          <input type="password" name="password" class="form-control" ng-model="user.password"
                  ng-minlength="3"
                  required
                  mongoose-error/>
@@ -42,11 +42,11 @@
                  </div>
         </md-input-container>
 
-        <md-input-container ng-class="{ 'has-success': form.confirmPassword.$valid && vm.submitted,
-                                            'has-error': form.confirmPassword.$invalid && vm.submitted }">
+        <md-input-container ng-class="{ 'has-success': form.confirmPassword.$valid && submitted,
+                                            'has-error': form.confirmPassword.$invalid && submitted }">
           <label>Confirm Password</label>
-          <input type="password" name="confirmPassword" class="form-control" ng-model="vm.user.confirmPassword"
-                 match="vm.user.password"
+          <input type="password" name="confirmPassword" class="form-control" ng-model="user.confirmPassword"
+                 match="user.password"
                  ng-minlength="3" required/>
                  <div ng-messages="signupForm.description.$error">
                    <div ng-message="required">Password must match.</div>
@@ -54,7 +54,7 @@
         </md-input-container>
 
         <div layout="row">
-          <md-button class="md-raised">Sign up</md-button>
+          <md-button class="md-raised"  ng-click="register(signupForm)">Sign up</md-button>
           <md-button class="md-raised" ui-sref="login">Login</md-button>
         </div>
 
