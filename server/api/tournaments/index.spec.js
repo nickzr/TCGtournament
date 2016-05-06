@@ -25,7 +25,7 @@ var tournamentIndex = proxyquire('./index.js', {
       return routerStub;
     }
   },
-  './tournament.controller': tournamentCtrlStub
+  './tournaments.controller': tournamentCtrlStub
 });
 
 describe('Tournament API Router:', function() {
@@ -36,7 +36,7 @@ describe('Tournament API Router:', function() {
 
   describe('GET /api/tournaments', function() {
 
-    it('should route to tournament.controller.index', function() {
+    it('should route to tournaments.controller.index', function() {
       routerStub.get
         .withArgs('/', 'tournamentCtrl.index')
         .should.have.been.calledOnce;

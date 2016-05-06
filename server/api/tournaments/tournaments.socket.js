@@ -4,7 +4,7 @@
 
 'use strict';
 
-var TournamentEvents = require('./tournament.events');
+var TournamentEvents = require('./tournaments.events');
 
 // Model events to emit
 var events = ['save', 'remove'];

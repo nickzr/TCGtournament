@@ -10,7 +10,7 @@
 'use strict';
 
 import _ from 'lodash';
-import Tournament from './tournament.model';
+import Tournament from './tournaments.model';
 
 function respondWithResult(res, statusCode) {
   statusCode = statusCode || 200;

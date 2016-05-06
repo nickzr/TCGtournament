@@ -18,7 +18,7 @@ angular.module('tcgtournamentApp')
         })
         .then(() => {
           // Logged in, redirect to home
-          $state.go('main');
+          $state.go('tournament');
         })
         .catch(err => {
           $scope.errors.other = err.message;

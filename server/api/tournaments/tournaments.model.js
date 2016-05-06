@@ -3,7 +3,7 @@
 var mongoose = require('bluebird').promisifyAll(require('mongoose'));
 
 var TournamentSchema = new mongoose.Schema({
-  name: String,
+  title: String,
   date: String,
   format: String,
   edition: String,

@@ -2,7 +2,7 @@
 
 angular.module('tcgtournamentApp')
   .factory('TournamentService', function($resource) {
-      return $resource('/api/tournament/:id', {
+      return $resource('/api/tournaments/:id', {
         id: '@id'
       }, {
         update: {

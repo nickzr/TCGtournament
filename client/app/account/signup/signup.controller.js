@@ -19,7 +19,7 @@ angular.module('tcgtournamentApp')
         })
         .then(() => {
           // Account created, redirect to home
-          $state.go('main');
+          $state.go('tournament');
         })
         .catch(err => {
           err = err.data;
