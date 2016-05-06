@@ -20,9 +20,7 @@ Tournament.find({}).removeAsync()
       startTime: '10 PM',
       price: '25 Euro',
       info: 'This is a non-profit tournament!' +
-      ' Dafür bekommt ihr 6 Booster für das Event im Swissformat und habt die Chance auf reichlich Boosterpreise.' +
-      ' Nach spielerangepasster Rundenzahl werden die Preise gemäß der Finalstandings verteilt.' +
-      ' Anschließend folgt der Cut auf die Top 8 und ein Draft, in dem das Bye für den RPTQ im KO System ausgespielt.',
+      ' A lot of info can be written here about the tournament.',
       players: [{
         firstName: 'Jan',
         lastName: 'Terlinden',
