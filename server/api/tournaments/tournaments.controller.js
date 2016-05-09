@@ -23,9 +23,9 @@ function respondWithResult(res, statusCode) {
 
 function saveUpdates(updates) {
   return function(entity) {
-    var updated = _.merge(entity, updates);
-    return updated.saveAsync()
-      .spread(updated => {
+    var updated = _.assign(entity, updates);
+    return updated.save()
+      .then(updated => {
         return updated;
       });
   };
@@ -34,7 +34,7 @@ function saveUpdates(updates) {
 function removeEntity(res) {
   return function(entity) {
     if (entity) {
-      return entity.removeAsync()
+      return entity.remove()
         .then(() => {
           res.status(204).end();
         });
@@ -68,7 +68,8 @@ export function index(req, res) {
 
 // Gets a single Tournament from the DB
 export function show(req, res) {
-  Tournament.findByIdAsync(req.params.id)
+  Tournament.findById(req.params.id).populate('owner', 'name email')
+    .execAsync()
     .then(handleEntityNotFound(res))
     .then(respondWithResult(res))
     .catch(handleError(res));
@@ -86,7 +87,7 @@ export function update(req, res) {
   if (req.body._id) {
     delete req.body._id;
   }
-  Tournament.findByIdAsync(req.params.id)
+  return Tournament.findById(req.params.id).exec()
     .then(handleEntityNotFound(res))
     .then(saveUpdates(req.body))
     .then(respondWithResult(res))
@@ -95,7 +96,7 @@ export function update(req, res) {
 
 // Deletes a Tournament from the DB
 export function destroy(req, res) {
-  Tournament.findByIdAsync(req.params.id)
+  return Tournament.findById(req.params.id).exec()
     .then(handleEntityNotFound(res))
     .then(removeEntity(res))
     .catch(handleError(res));
