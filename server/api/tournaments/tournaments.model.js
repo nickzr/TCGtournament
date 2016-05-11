@@ -1,6 +1,7 @@
 'use strict';
 
-var mongoose = require('bluebird').promisifyAll(require('mongoose'));
+var mongoose = require('bluebird').promisifyAll(require('mongoose')),
+paginator = require('mongoose-paginate');
 
 var TournamentSchema = new mongoose.Schema({
   title: String,
@@ -18,8 +19,9 @@ var TournamentSchema = new mongoose.Schema({
     lastName: String,
     DCI: String,
     email: String
-  }],
-  active: Boolean
+  }]
 });
+
+TournamentSchema.plugin(paginator);
 
 export default mongoose.model('Tournament', TournamentSchema);
