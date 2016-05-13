@@ -6,6 +6,7 @@ angular.module('tcgtournamentApp')
     $scope.newPlayer = {};
     $scope.tournament = {};
 
+    //Using the tournament service, we load the tournament with the specific ID and save it to the scope
     TournamentService.get({id:$stateParams.id}
       , function(tournament){
       $scope.tournament = tournament;
@@ -15,6 +16,8 @@ angular.module('tcgtournamentApp')
       window.history.back();
     };
 
+    //Save the player to the list of players in the tournament,
+    //Then do an update on the tournament service, it then does a call back and we save the new tournament to our tournament
     $scope.addPlayer = function(form){
       if(form.$valid){
         $scope.newPlayer.enabled = true;
@@ -45,6 +48,8 @@ angular.module('tcgtournamentApp')
       $scope.editingPlayer = undefined;
     };
 
+    //Using the lodash directive remove, we remove the first player it finds with the given id in the list of players
+    //Then do an update on the tournament service
     $scope.deletePlayer = function(player, event){
       var confirm = $mdDialog.confirm()
       .title('Remove participant?')
