@@ -77,8 +77,8 @@ angular.module('tcgtournamentApp')
       });
     };
 
-    $scope.$on('$destroy', function() {
-      //socket.unsyncUpdates('tournament');
+    $scope.$on('$destroy', function(){
+      socket.unsyncUpdates('tournament');
     });
 
     initialize(tournaments);
