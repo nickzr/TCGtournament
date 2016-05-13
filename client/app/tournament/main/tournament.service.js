@@ -7,6 +7,9 @@ angular.module('tcgtournamentApp')
       }, {
         update: {
           method: 'PUT'
+        },
+        paged: {
+          method:'GET'
         }
       });
   });

@@ -1,15 +1,18 @@
 <md-content layout-padding flex-offset="15" flex="70">
+  <!-- <md-input-container class="md-block">
+    <label for="">Search</label>
+    <input type="text">
+  </md-input-container> -->
   <md-list>
     <md-header class="md-no-sticky">Tournaments</md-header>
     <hr>
-    <md-list-item class="md-3-line" ng-click="goToTournament(tournament)" ng-repeat="tournament in tournaments">
+    <md-list-item class="md-3-line" ng-click="goToTournament(tournament)" dir-paginate="tournament in tournaments | itemsPerPage: tournamentsPerPage" total-items="totalTournaments" current-page="pagination.current">
       <div class="md-list-item-text" layout="column">
         <h3>{{tournament.title}}</h3>
         <p>{{tournament.date}}</p>
         <p>{{tournament.location}}</p>
       </div>
       <div ng-if="isAdmin()">
-        <!-- <md-switch ng-model="tournament.enabled">{{tournament.enabled ? "Sichtbar" : "Unsichtbar"}}</md-switch> -->
         <md-button ng-click="deleteTournament(tournament)" class="md-icon-button" aria-label="Delete">
           <i class="fa fa-trash-o"></i>
           <md-tooltip md-direction="down">Delete</md-tooltip>
@@ -17,6 +20,8 @@
       </div>
     </md-list-item>
   </md-list>
+  <dir-pagination-controls on-page-change="pageChanged(newPageNumber)" max-size="5" >
+  </dir-pagination-controls>
 </md-content>
 
 <md-content layout-padding flex-offset="30" flex="40" ng-if="isAdmin()">
