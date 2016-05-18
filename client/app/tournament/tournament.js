@@ -6,16 +6,7 @@ angular.module('tcgtournamentApp')
       .state('tournament', {
         url: '/',
         templateUrl: 'app/tournament/main/tournament.html',
-        controller: 'TournamentCtrl',
-        resolve: {
-          tournaments: function(TournamentService) {
-            return TournamentService.paged({
-              page: 1,
-              limit: 5,
-              sortBy: 'title'
-            });
-          }
-        }
+        controller: 'TournamentCtrl'
       })
       .state('tournamentdetails', {
         url: '/tournament/:id',

@@ -1,16 +1,16 @@
 'use strict';
 
-describe('Controller: FrontpageCtrl', function () {
+describe('Component: HomeComponent', function () {
 
   // load the controller's module
   beforeEach(module('tcgtournamentApp'));
 
-  var FrontpageCtrl, scope;
+  var HomeComponent, scope;
 
   // Initialize the controller and a mock scope
-  beforeEach(inject(function ($controller, $rootScope) {
+  beforeEach(inject(function ($componentController, $rootScope) {
     scope = $rootScope.$new();
-    FrontpageCtrl = $controller('FrontpageCtrl', {
+    HomeComponent = $componentController('HomeComponent', {
       $scope: scope
     });
   }));

@@ -1,41 +1,28 @@
-<div class="container">
-  <div class="row">
-    <div class="col-sm-12">
-      <h1>Login</h1>
-      <p>Accounts are reset on server restart from <code>server/config/seed.js</code>. Default account is <code>test@example.com</code> / <code>test</code></p>
-      <p>Admin account is <code>admin@example.com</code> / <code>admin</code></p>
-    </div>
-    <div class="col-sm-12">
-      <md-content layout-padding>
-        <div>
-      <form name="loginForm" novalidate>
-        <md-input-container class="md-block" flex-gt-xs>
-          <label>Email</label>
-
-          <input name="email" ng-model="user.email" required>
-          <div ng-messages="loginForm.$error">
-            <div ng-message="required">This is required.</div>
-          </div>
-        </md-input-container>
-
-        <md-input-container class="md-block" flex-gt-xs>
-          <label>Password</label>
-
-          <input type="password" name="password" class="form-control" ng-model="user.password" required>
-          <div ng-messages="projectForm.description.$error">
-            <div ng-message="required">This is required.</div>
-          </div>
-        </md-input-container>
-
-          <div layout="row">
-          <md-button class="md-raised" ng-click="login(loginForm)">Login</md-button>
-          <md-button class="md-raised" ui-sref="signup">Register</md-button>
+<md-content layout-padding flex-offset="30" flex="40">
+  <md-card>
+    <h3>Login</h3>
+    <form name="loginForm" novalidate>
+      <md-input-container class="md-block" flex-gt-xs>
+        <label>Email</label>
+        <input name="email" ng-model="user.email" required>
+        <div ng-messages="loginForm.$error">
+          <div ng-message="required">This is required.</div>
         </div>
+      </md-input-container>
 
-      </form>
+      <md-input-container class="md-block" flex-gt-xs>
+        <label>Password</label>
+        <input type="password" name="password" class="form-control" ng-model="user.password" required>
+        <div ng-messages="projectForm.description.$error">
+          <div ng-message="required">This is required.</div>
         </div>
-          </md-content>
-    </div>
-  </div>
-  <hr>
-</div>
+      </md-input-container>
+
+      <div layout="row">
+        <md-button class="md-raised" ng-click="login(loginForm)">Login</md-button>
+        <md-button class="md-raised" ui-sref="signup">Sign Up</md-button>
+      </div>
+    </form>
+  </md-card>
+</md-content>
+<br>

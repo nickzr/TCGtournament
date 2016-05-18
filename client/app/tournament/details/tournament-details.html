@@ -1,143 +1,165 @@
-<md-content flex-offset="15" layout="row">
-  <md-content flex="35" layout="column">
+<md-content flex-offset="20" layout="row">
+  <md-content flex="35" flex-sm="100" flex-xs="100" layout="column">
     <!-- info -->
-    <md-content>
-      <h2>{{ tournament.title }} - {{ tournament.date }}</h2>
-      <p><b>Location</b><br> {{tournament.location}}</p>
-      <div layout="row">
-        <div flex layout="column">
-          <p><b>Format</b><br> {{tournament.format}}</p>
-          <p><b>Entry time</b><br> {{tournament.entryTime}}</p>
+
+    <md-card>
+      <md-card-content>
+        <h3>{{ tournament.title }} - {{ tournament.date }}</h3>
+        <p><b>Location</b>
+          <br> {{tournament.location}}</p>
+        <div layout="row">
+          <div flex layout="column">
+            <p><b>Format</b>
+              <br> {{tournament.format}}</p>
+            <p><b>Entry time</b>
+              <br> {{tournament.entryTime}}</p>
+          </div>
+          <div flex layout="column">
+            <p><b>Edition</b>
+              <br> {{tournament.edition}}</p>
+            <p><b>Start time</b>
+              <br> {{tournament.startTime}}</p>
+          </div>
+          <div flex layout="column">
+            <p><b>REL</b>
+              <br> {{tournament.rel}}</p>
+            <p><b>Price</b>
+              <br> {{tournament.price}}</p>
+          </div>
         </div>
-        <div flex layout="column">
-          <p><b>Edition</b><br> {{tournament.edition}}</p>
-          <p><b>Start time</b><br> {{tournament.startTime}}</p>
-        </div>
-        <div flex layout="column">
-          <p><b>REL</b><br> {{tournament.rel}}</p>
-          <p><b>Price</b><br> {{tournament.price}}</p>
-        </div>
-      </div>
-      <p><b>Info</b><br>{{tournament.info}}</p>
-      <hr>
-    </md-content>
+        <p><b>Info</b>
+          <br>{{tournament.info}}</p>
+      </md-card-content>
+    </md-card>
+
 
     <!-- create -->
-    <md-content ng-if="!editingPlayer">
-      <h3>Sign up</h3>
-      <form name="newPlayerForm" style="margin-bottom:10px;">
-        <md-input-container class="md-block">
-          <label>First name</label>
-          <input required ng-model="newPlayer.firstName" type="text">
-          <div ng-messages="newPlayerForm.firstName.$error" role="alert">
-            <div ng-message="required">Please input your first name.</div>
-          </div>
-        </md-input-container>
+    <md-card ng-if="!editingPlayer">
+      <md-card-content>
+        <h3>Sign up</h3>
+        <form name="newPlayerForm" style="margin-bottom:10px;">
+          <md-input-container class="md-block">
+            <label>First name</label>
+            <input required ng-model="newPlayer.firstName" type="text">
+            <div ng-messages="newPlayerForm.firstName.$error" role="alert">
+              <div ng-message="required">Please input your first name.</div>
+            </div>
+          </md-input-container>
 
-        <md-input-container class="md-block">
-          <label>Last name</label>
-          <input required ng-model="newPlayer.lastName" type="text">
-          <div ng-messages="newPlayerForm.lastName.$error" role="alert">
-            <div ng-message="required">Please input your last name.</div>
-          </div>
-        </md-input-container>
+          <md-input-container class="md-block">
+            <label>Last name</label>
+            <input required ng-model="newPlayer.lastName" type="text">
+            <div ng-messages="newPlayerForm.lastName.$error" role="alert">
+              <div ng-message="required">Please input your last name.</div>
+            </div>
+          </md-input-container>
 
-        <md-input-container class="md-block">
-          <label>DCI</label>
-          <input required ng-model="newPlayer.DCI" type="text">
-          <div ng-messages="newPlayerForm.DCI.$error" role="alert">
-            <div ng-message="required">Please input a valid DCI.</div>
-          </div>
-        </md-input-container>
+          <md-input-container class="md-block">
+            <label>DCI</label>
+            <input required ng-model="newPlayer.DCI" type="text">
+            <div ng-messages="newPlayerForm.DCI.$error" role="alert">
+              <div ng-message="required">Please input a valid DCI.</div>
+            </div>
+          </md-input-container>
 
-        <md-input-container class="md-block">
-          <label>E-Mail</label>
-          <input required ng-model="newPlayer.email" type="text">
-          <div ng-messages="newPlayerForm.email.$error" role="alert">
-            <div ng-message="required">Please input a valid email.</div>
+          <md-input-container class="md-block">
+            <label>E-Mail</label>
+            <input required ng-model="newPlayer.email" type="text">
+            <div ng-messages="newPlayerForm.email.$error" role="alert">
+              <div ng-message="required">Please input a valid email.</div>
+            </div>
+          </md-input-container>
+          <div layout="row" layout-align="end none">
+            <md-button ng-click="addPlayer(newPlayerForm)" class="md-raised" aria-label="Add">
+              <i class="fa fa-plus"></i> Submit
+            </md-button>
           </div>
-        </md-input-container>
-        <div layout="row" layout-align="end none">
-          <md-button ng-click="addPlayer(newPlayerForm)" class="md-raised" aria-label="Add">
-            <i class="fa fa-plus"></i> Submit
-          </md-button>
-        </div>
-      </form>
-    </md-content>
+        </form>
+      </md-card-content>
+    </md-card>
 
     <!-- edit -->
-    <md-content ng-if="editingPlayer">
-      <h3>Edit</h3>
-      <form name="editPlayerForm" style="margin-bottom:10px;">
-        <md-input-container class="md-block">
-          <label>First name</label>
-          <input required ng-model="editingPlayer.firstName" type="text">
-          <div ng-messages="editPlayerForm.firstName.$error" role="alert">
-            <div ng-message="required">Please input first name.</div>
-          </div>
-        </md-input-container>
-
-        <md-input-container class="md-block">
-          <label>Last name</label>
-          <input required ng-model="editingPlayer.lastName" type="text">
-          <div ng-messages="editPlayerForm.lastName.$error" role="alert">
-            <div ng-message="required">Please input last name.</div>
-          </div>
-        </md-input-container>
-
-        <md-input-container class="md-block">
-          <label>DCI</label>
-          <input required ng-model="editingPlayer.DCI" type="text">
-          <div ng-messages="editPlayerForm.DCI.$error" role="alert">
-            <div ng-message="required">Please input DCI.</div>
-          </div>
-        </md-input-container>
-
-        <md-input-container class="md-block">
-          <label>E-Mail</label>
-          <input required ng-model="editingPlayer.email" type="text">
-          <div ng-messages="editPlayerForm.email.$error" role="alert">
-            <div ng-message="required">Please input a valid E-Mail.</div>
-          </div>
-        </md-input-container>
-
-        <div layout-gt-xs="row">
-          <md-button aria-label="Delete" class="md-raised md-danger" ng-click="deletePlayer(player, $event)">
-            <div style="color:darkred;">
-              <i class="fa fa-trash"></i> Remove
+    <md-card ng-if="editingPlayer">
+      <md-card-content>
+        <h3>Edit</h3>
+        <form name="editPlayerForm" style="margin-bottom:10px;">
+          <md-input-container class="md-block">
+            <label>First name</label>
+            <input required ng-model="editingPlayer.firstName" type="text">
+            <div ng-messages="editPlayerForm.firstName.$error" role="alert">
+              <div ng-message="required">Please input first name.</div>
             </div>
-          </md-button>
-          <p flex></p>
-          <md-button aria-label="Save" ng-click="savePlayerEdit(editPlayerForm)" class="md-raised md-primary">
-            <i class="fa fa-floppy-o"></i> Save
-          </md-button>
-          <md-button aria-label="Undo" ng-click="undoPlayerEdit()" class="md-raised md-warning">
-            <i class="fa fa-undo"></i> Undo edit
-          </md-button>
-        </div>
-      </form>
-    </md-content>
+          </md-input-container>
+
+          <md-input-container class="md-block">
+            <label>Last name</label>
+            <input required ng-model="editingPlayer.lastName" type="text">
+            <div ng-messages="editPlayerForm.lastName.$error" role="alert">
+              <div ng-message="required">Please input last name.</div>
+            </div>
+          </md-input-container>
+
+          <md-input-container class="md-block">
+            <label>DCI</label>
+            <input required ng-model="editingPlayer.DCI" type="text">
+            <div ng-messages="editPlayerForm.DCI.$error" role="alert">
+              <div ng-message="required">Please input DCI.</div>
+            </div>
+          </md-input-container>
+
+          <md-input-container class="md-block">
+            <label>E-Mail</label>
+            <input required ng-model="editingPlayer.email" type="text">
+            <div ng-messages="editPlayerForm.email.$error" role="alert">
+              <div ng-message="required">Please input a valid E-Mail.</div>
+            </div>
+          </md-input-container>
+
+          <div layout-gt-xs="row">
+            <md-button aria-label="Delete" class="md-raised md-danger" ng-click="deletePlayer(player, $event)">
+              <div style="color:darkred;">
+                <i class="fa fa-trash"></i> Remove
+              </div>
+            </md-button>
+            <p flex></p>
+            <md-button aria-label="Save" ng-click="savePlayerEdit(editPlayerForm)" class="md-raised md-primary">
+              <i class="fa fa-floppy-o"></i> Save
+            </md-button>
+            <md-button aria-label="Undo" ng-click="undoPlayerEdit()" class="md-raised md-warning">
+              <i class="fa fa-undo"></i> Undo edit
+            </md-button>
+          </div>
+        </form>
+      </md-card-content>
+    </md-card>
   </md-content>
 
   <!-- list -->
-  <md-content flex-offset="5" flex="40">
-    <div flex-sm="100" flex-xs="100" layout="column">
-      <h3 flex pull-right>Participants</h3>
-      <md-list>
-        <md-list-item aria-label="Player" ng-click="goToPlayer(player, $event)" ng-repeat="player in tournament.players | orderBy : '-firstName'">
-          <div flex flex-sm="100" flex-xs="100" layout="row">
-            <p flex pull-right="10">{{$index+1}}. {{player.firstName}} {{player.lastName}}</p>
-            <div flex="5" ng-if="isAdmin()">
-              <md-button ng-click="editPlayer(player)" class="md-icon-button" aria-label="Edit">
-                <i class="fa fa-pencil"></i>
-                <md-tooltip md-direction="down">Edit</md-tooltip>
-              </md-button>
-            </div>
-          </div>
-          <md-divider></md-divider>
-        </md-list-item>
-      </md-list>
-    </div>
+  <md-content flex-sm="100" flex-xs="100" flex="35">
+    <md-card>
+      <md-card-content>
+        <div layout="column">
+          <h3 flex pull-right>Participants</h3>
+          <md-list>
+            <md-list-item aria-label="Player" ng-click="goToPlayer(player, $event)" dir-paginate="player in tournament.players | itemsPerPage:10">
+              <div flex flex-sm="100" flex-xs="100" layout="row">
+                <p flex pull-right="10">{{$index+1}}. {{player.firstName}} {{player.lastName}}</p>
+                <div flex="5" ng-if="isAdmin()">
+                  <md-button ng-click="editPlayer(player)" class="md-icon-button" aria-label="Edit">
+                    <i class="fa fa-pencil"></i>
+                    <md-tooltip md-direction="down">Edit</md-tooltip>
+                  </md-button>
+                </div>
+              </div>
+              <md-divider></md-divider>
+            </md-list-item>
+          </md-list>
+          <center>
+            <dir-pagination-controls max-size="5"></dir-pagination-controls>
+          </center>
+        </div>
+      </md-card-content>
+    </md-card>
   </md-content>
 
 </md-content>

@@ -1,26 +1,18 @@
 'use strict';
 
 angular.module('tcgtournamentApp')
-  .controller('TournamentCtrl', function($scope, socket, TournamentService, $state, Auth, tournaments) {
+  .controller('TournamentCtrl', function($scope, socket, TournamentService, $state, Auth) {
     $scope.isAdmin = Auth.isAdmin;
     //pagination
     $scope.propToSortOn = 'title';
     $scope.reverse = false;
     $scope.search = {};
     $scope.totalTournaments = 0;
-    $scope.tournamentsPerPage = 5;
+    $scope.tournamentsPerPage = 9;
 
-    function initialize(tournaments) {
-      $scope.totalTournaments = tournaments.total;
-      $scope.tournaments = tournaments.docs;
-      $scope.currentPage = 1;
-    }
 
     function getResultsPage(pageNumber) {
-      if (!$scope.tournaments) {
-        return;
-      }
-      TournamentService.paged({
+        TournamentService.paged({
           page: pageNumber,
           limit: $scope.tournamentsPerPage,
           sortBy: $scope.propToSortOn,
@@ -40,6 +32,7 @@ angular.module('tcgtournamentApp')
 
     //sort
     $scope.sort = function(keyname) {
+
       $scope.propToSortOn = keyname;
       $scope.reverse = !$scope.reverse;
       if ($scope.reverse) {
@@ -81,6 +74,6 @@ angular.module('tcgtournamentApp')
       socket.unsyncUpdates('tournament');
     });
 
-    initialize(tournaments);
+    getResultsPage(1);
 
   });

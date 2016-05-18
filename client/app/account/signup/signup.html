@@ -1,66 +1,49 @@
-<div class="container">
-  <div class="row">
-    <div class="col-sm-12">
-      <h1>Sign up</h1>
-    </div>
-    <div class="col-sm-12">
-        <md-content layout-padding>
-          <form name="signupForm" novalidate>
-            <md-input-container class="md-block" ng-class="{ 'has-success': form.name.$valid && submitted,
+<md-content layout-padding flex-offset="30" flex="40">
+  <md-card>
+    <h3>Sign up</h3>
+    <form name="signupForm" novalidate>
+      <md-input-container class="md-block" ng-class="{ 'has-success': form.name.$valid && submitted,
                                             'has-error': form.name.$invalid && submitted }">
-            <label>Name</label>
-
-            <input type="text" name="name" class="form-control" ng-model="user.name"
-                 required/>
-                 <div ng-messages="signupForm.description.$error">
-                   <div ng-message="required">A name is required.</div>
-                 </div>
-          </md-input-container>
-
-            <md-input-container class="md-block" ng-class="{ 'has-success': form.email.$valid && submitted,
-                                            'has-error': form.email.$invalid && submitted }">
-            <label>Email</label>
-
-            <input type="email" name="email" class="form-control" ng-model="user.email"
-                 required
-                 mongoose-error/>
-                 <div ng-messages="signupForm.description.$error">
-                   <div ng-message="required">A valid email is required.</div>
-                 </div>
-          </md-input-container>
-
-       <md-input-container ng-class="{ 'has-success': form.password.$valid && submitted,
-                                            'has-error': form.password.$invalid && submitted }">
-          <label>Password</label>
-
-          <input type="password" name="password" class="form-control" ng-model="user.password"
-                 ng-minlength="3"
-                 required
-                 mongoose-error/>
-                 <div ng-messages="signupForm.description.$error">
-                   <div ng-message="required">Password must be at least 3 characters long.</div>
-                 </div>
-        </md-input-container>
-
-        <md-input-container ng-class="{ 'has-success': form.confirmPassword.$valid && submitted,
-                                            'has-error': form.confirmPassword.$invalid && submitted }">
-          <label>Confirm Password</label>
-          <input type="password" name="confirmPassword" class="form-control" ng-model="user.confirmPassword"
-                 match="user.password"
-                 ng-minlength="3" required/>
-                 <div ng-messages="signupForm.description.$error">
-                   <div ng-message="required">Password must match.</div>
-                 </div>
-        </md-input-container>
-
-        <div layout="row">
-          <md-button class="md-raised"  ng-click="register(signupForm)">Sign up</md-button>
-          <md-button class="md-raised" ui-sref="login">Login</md-button>
+        <label>Name</label>
+        <input type="text" name="name" class="form-control" ng-model="user.name" required/>
+        <div ng-messages="signupForm.description.$error">
+          <div ng-message="required">A name is required.</div>
         </div>
+      </md-input-container>
 
-      </form>
-    </md-content>
-    </div>
-  </div>
-  <hr>
-</div>
+      <md-input-container class="md-block" ng-class="{ 'has-success': form.email.$valid && submitted,
+                                            'has-error': form.email.$invalid && submitted }">
+        <label>Email</label>
+        <input type="email" name="email" class="form-control" ng-model="user.email" required mongoose-error/>
+        <div ng-messages="signupForm.description.$error">
+          <div ng-message="required">A valid email is required.</div>
+        </div>
+      </md-input-container>
+
+      <md-input-container class="md-block" ng-class="{ 'has-success': form.password.$valid && submitted,
+                                            'has-error': form.password.$invalid && submitted }">
+        <label>Password</label>
+        <input type="password" name="password" class="form-control" ng-model="user.password" ng-minlength="3" required mongoose-error/>
+        <div ng-messages="signupForm.description.$error">
+          <div ng-message="required">Password must be at least 3 characters long.</div>
+        </div>
+      </md-input-container>
+
+      <md-input-container class="md-block" ng-class="{ 'has-success': form.confirmPassword.$valid && submitted,
+                                            'has-error': form.confirmPassword.$invalid && submitted }">
+        <label>Confirm Password</label>
+        <input type="password" name="confirmPassword" class="form-control" ng-model="user.confirmPassword" match="user.password" ng-minlength="3" required/>
+        <div ng-messages="signupForm.description.$error">
+          <div ng-message="required">Password must match.</div>
+        </div>
+      </md-input-container>
+
+      <div layout="row">
+        <md-button class="md-raised" ng-click="register(signupForm)">Sign up</md-button>
+        <md-button class="md-raised" ui-sref="login">Login</md-button>
+      </div>
+
+    </form>
+  </md-card>
+</md-content>
+<br>
