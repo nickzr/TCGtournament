@@ -1,7 +1,34 @@
 'use strict';
 
 angular.module('tcgtournamentApp')
-  .controller('ChatController', function($scope, $mdSidenav) {
+  .controller('ChatController', function($scope, socket, ChatService, $mdSidenav) {
+
+    ChatService.query(function(messages) {
+      $scope.messages = messages;
+      socket.syncUpdates('message', $scope.messages);
+    });
+
+
+    $scope.newMessage = {};
+
+    $scope.sendMessage = function(keyEvent) {
+      if (keyEvent.which === 13)
+      {
+        ChatService.save($scope.newMessage, function() {
+          $scope.newMessage = {};
+        });
+      }
+    };
+
+    $scope.deleteMessage = function(message) {
+      ChatService.remove({
+        id: message._id
+      }, function(message) {});
+    };
+
+    $scope.$on('$destroy', function() {
+      socket.unsyncUpdates('message');
+    });
 
     $scope.openChat = function() {
       $mdSidenav('right').toggle();
@@ -11,16 +38,13 @@ angular.module('tcgtournamentApp')
       return $mdSidenav('right').isOpen();
     };
 
-    $scope.sendMessage = function(keyEvent) {
-      if (keyEvent.which === 13)
-        $scope.chatMessage = null;
-    };
   })
-  .controller('RightCtrl', function ($scope, $timeout, $mdSidenav, $log) {
-    $scope.close = function () {
-      $mdSidenav('right').close()
-        .then(function () {
-          $log.debug("close RIGHT is done");
-        });
-    };
-  });
+
+.controller('RightCtrl', function($scope, $timeout, $mdSidenav, $log) {
+  $scope.close = function() {
+    $mdSidenav('right').close()
+      .then(function() {
+        $log.debug("close RIGHT is done");
+      });
+  };
+});

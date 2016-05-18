@@ -5,16 +5,27 @@
 </md-content>
 
 <md-sidenav class="md-sidenav-right" md-component-id="right">
-  <!-- <md-toolbar class="md-theme-light">
-    <h1 class="md-toolbar-tools">Chat</h1>
-  </md-toolbar> -->
-  <md-content ng-controller="RightCtrl" layout-padding>
-    <form style="position:fixed;bottom:0px;">
-      <md-input-container>
-        <label>Message</label>
-        <textarea type="text" ng-model="chatMessage" ng-keypress="sendMessage($event)" md-autofocus style="max-width:100%;width:280px;" maxlength="200">
+  <md-content style="height:85%; border-bottom: 1px solid #E5E5E5;">
+    <md-list>
+      <md-list-item ng-repeat="message in messages">
+        <p>
+          {{message.user}}: {{message.text}}
+        </p>
+      </md-list-item>
+    </md-list>
+  </md-content>
+  <md-content style="height:15%;" ng-controller="RightCtrl">
+    <form>
+      <md-input-container class="md-block" style="margin-bottom:-20px;">
+        <label for="messageText">Message</label>
+        <textarea type="text" ng-keypress="sendMessage($event)" ng-model="newMessage.text" maxlength="200"></textarea>
       </md-input-container>
+      <md-input-container class="md-block" style="margin-bottom:-20px; width:250px;">
+        <label for="messageUser">Name</label>
+        <input type="text" ng-keypress="sendMessage($event)" ng-model="newMessage.user" md-autofocus maxlength="20">
+      </md-input-container>
+      <md-button class="md-raised btn-chat" ng-click="sendMessage($event)">Send
+      </md-button>
     </form>
   </md-content>
 </md-sidenav>
-</div>
