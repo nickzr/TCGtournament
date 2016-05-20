@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('tcgtournamentApp')
-  .controller('TournamentCtrl', function($scope, socket, TournamentService, $state, Auth) {
+  .controller('TournamentCtrl', function($scope, socket, TournamentService, $state, $mdToast, Auth) {
     $scope.isAdmin = Auth.isAdmin;
     //pagination
     $scope.propToSortOn = 'title';
@@ -12,7 +12,7 @@ angular.module('tcgtournamentApp')
 
 
     function getResultsPage(pageNumber) {
-        TournamentService.paged({
+      TournamentService.paged({
           page: pageNumber,
           limit: $scope.tournamentsPerPage,
           sortBy: $scope.propToSortOn,
@@ -22,6 +22,7 @@ angular.module('tcgtournamentApp')
           $scope.totalTournaments = tournaments.total;
           $scope.tournaments = tournaments.docs;
           $scope.currentPage = pageNumber;
+          socket.syncUpdates('tournament', $scope.tournaments);
         });
     }
 
@@ -47,15 +48,24 @@ angular.module('tcgtournamentApp')
 
     $scope.pageChanged = function(newPage) {
       getResultsPage(newPage);
-      console.log(newPage)
     };
 
     $scope.tournament = {};
 
-    $scope.createTournament = function() {
-      TournamentService.save($scope.tournament, function() {
-        $scope.tournament = {};
-      });
+    $scope.createTournament = function(form) {
+      if (form.$valid) {
+        TournamentService.save($scope.tournament, function() {
+          $scope.tournament = {};
+          var toast = $mdToast.simple()
+            .textContent('Tournament created.')
+            .action('OK')
+            .highlightAction(false)
+            .position('bottom right');
+            $mdToast.show(toast);
+          form.$setPristine(); //Clears the form
+          form.$setUntouched(); //Sets the form to be untouched
+        });
+      }
     };
 
     $scope.deleteTournament = function(tournament) {
@@ -70,7 +80,7 @@ angular.module('tcgtournamentApp')
       });
     };
 
-    $scope.$on('$destroy', function(){
+    $scope.$on('$destroy', function() {
       socket.unsyncUpdates('tournament');
     });
 

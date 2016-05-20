@@ -1,7 +1,8 @@
 'use strict';
 
 angular.module('tcgtournamentApp')
-  .controller('ChatController', function($scope, socket, ChatService, $mdSidenav) {
+  .controller('ChatController', function($scope, socket, ChatService, $mdSidenav, Auth) {
+    $scope.isAdmin = Auth.isAdmin;
 
     ChatService.query(function(messages) {
       $scope.messages = messages;
@@ -15,7 +16,7 @@ angular.module('tcgtournamentApp')
       if (keyEvent.which === 13)
       {
         ChatService.save($scope.newMessage, function() {
-          $scope.newMessage = {};
+          $scope.newMessage.text = "";
         });
       }
     };

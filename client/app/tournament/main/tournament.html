@@ -1,12 +1,18 @@
 <md-content layout-padding flex-offset="20" flex="60">
   <md-header class="md-no-sticky">Tournaments</md-header>
   <hr>
-  <div layout="row" layout-wrap layout-align="center" >
+  <div layout="row" layout-wrap layout-align="center">
     <md-card flex="30" dir-paginate="tournament in tournaments | itemsPerPage: tournamentsPerPage" total-items="totalTournaments" current-page="pagination.current">
+      <div ng-if="isAdmin()" layout="row" layout-align="end">
+        <md-button ng-click="deleteTournament(tournament)" class="md-icon-button" aria-label="Delete">
+          <i class="fa fa-trash-o"></i>
+          <md-tooltip md-direction="down">Delete</md-tooltip>
+        </md-button>
+      </div>
       <hr>
       <div layout="row" layout-align="center">
-        <i ng-if="tournament.format == 'Sealed'" class="fa fa-trophy fa-4x"></i>
-        <i ng-if="tournament.format == 'Standard'" class="fa fa-legal fa-4x"></i>
+          <i ng-if="tournament.format == 'Sealed'" class="fa fa-trophy fa-4x"></i>
+          <i ng-if="tournament.format == 'Standard'" class="fa fa-legal fa-4x"></i>
       </div>
       <md-card-content style="padding-bottom:30px;">
         <center>
@@ -20,23 +26,6 @@
       <hr>
     </md-card>
   </div>
-  <!-- <md-list>
-    <md-header class="md-no-sticky">Tournaments</md-header>
-    <hr>
-    <md-list-item class="md-3-line" ng-click="goToTournament(tournament)" dir-paginate="tournament in tournaments | itemsPerPage: tournamentsPerPage" total-items="totalTournaments" current-page="pagination.current">
-      <div class="md-list-item-text" layout="column">
-        <h3>{{tournament.title}}</h3>
-        <p>{{tournament.date}}</p>
-        <p>{{tournament.location}}</p>
-      </div>
-      <div ng-if="isAdmin()">
-        <md-button ng-click="deleteTournament(tournament)" class="md-icon-button" aria-label="Delete">
-          <i class="fa fa-trash-o"></i>
-          <md-tooltip md-direction="down">Delete</md-tooltip>
-        </md-button>
-      </div>
-    </md-list-item>
-  </md-list> -->
   <div layout="row" layout-align="center">
     <dir-pagination-controls on-page-change="pageChanged(newPageNumber)" max-size="5">
     </dir-pagination-controls>
@@ -45,12 +34,12 @@
 
 <md-content layout-padding flex-offset="30" flex="40" ng-if="isAdmin()">
   <md-card>
-    <form name="createTournamentForm" style="margin-bottom:10px;">
+    <form name="newTournamentForm" style="margin-bottom:10px;">
       <h4>New Tournament:</h4>
       <md-input-container class="md-block">
         <label>Title</label>
         <input required ng-model="tournament.title" type="text">
-        <div ng-messages="createTournamentForm.title.$error" role="alert">
+        <div ng-messages="createTournamentForm.title.$error">
           <div ng-message="required">Title required.</div>
         </div>
       </md-input-container class="md-block">
@@ -128,7 +117,7 @@
       </md-input-container>
 
       <div layout="row" layout-align="end none">
-        <md-button aria-label="Add" ng-click="createTournament()" class="md-raised md-primary">
+        <md-button aria-label="Add" ng-click="createTournament(newTournamentForm)" class="md-raised md-primary">
           <i class="fa fa-floppy-o"></i> Create
         </md-button>
       </div>

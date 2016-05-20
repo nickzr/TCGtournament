@@ -51,3 +51,10 @@ md-card {
 /*.fa {
   color: #999;
 }*/
+
+ mdToast{
+   bottom:0px;
+   right:0px;
+
+   z-index: 1;
+ }

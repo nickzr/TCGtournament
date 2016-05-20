@@ -71,7 +71,7 @@
           </md-input-container>
           <div layout="row" layout-align="end none">
             <md-button ng-click="addPlayer(newPlayerForm)" class="md-raised" aria-label="Add">
-              <i class="fa fa-plus"></i> Submit
+              <i class="fa fa-plus"></i> Sign Up
             </md-button>
           </div>
         </form>
@@ -143,7 +143,7 @@
           <md-list>
             <md-list-item aria-label="Player" ng-click="goToPlayer(player, $event)" dir-paginate="player in tournament.players | itemsPerPage:10">
               <div flex flex-sm="100" flex-xs="100" layout="row">
-                <p flex pull-right="10">{{$index+1}}. {{player.firstName}} {{player.lastName}}</p>
+                <p flex pull-right="10">{{$index + 1}}. {{player.firstName}} {{player.lastName}}</p>
                 <div flex="5" ng-if="isAdmin()">
                   <md-button ng-click="editPlayer(player)" class="md-icon-button" aria-label="Edit">
                     <i class="fa fa-pencil"></i>

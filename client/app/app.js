@@ -12,7 +12,8 @@ angular.module('tcgtournamentApp', [
     'ui.bootstrap',
     'validation.match',
     'ngMaterial',
-    'angularUtils.directives.dirPagination'
+    'angularUtils.directives.dirPagination',
+    'luegg.directives'
   ])
   .config(function($urlRouterProvider, $locationProvider, $mdThemingProvider) {
     $urlRouterProvider

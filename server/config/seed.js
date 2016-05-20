@@ -7,210 +7,35 @@
 import User from '../api/user/user.model';
 import Tournament from '../api/tournaments/tournaments.model';
 
+var playerArray = [];
+for (var i = 0; i < 50; i++) {
+  playerArray.push({
+    firstName: 'Jan',
+    lastName: 'Terlinden',
+    DCI: '123456789',
+    email: 'jan@gmail.com'
+  })
+}
+
 Tournament.find({}).removeAsync()
   .then(() => {
     Tournament.create({
       title: 'Sealed Tournament - 10',
       date: '07.05.2016',
       format: 'Standard',
-      edition: 'Current Edition',
-      rel: 'competitive',
+      edition: 'Current',
+      rel: 'Competitive',
       location: 'Jugendhaus EXXE in Flensburg',
       entryTime: '09:00',
       startTime: '10:00',
       price: '25 Euro',
-      info: "test This is a non-profit tournament!" +
+      info: "This is a non-profit tournament!" +
         " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus nulla dolor," +
         " malesuada et neque nec, laoreet finibus ante. Curabitur consectetur libero volutpat sem egestas," +
         " ec blandit magna ullamcorper. Nam vitae bibendum felis. Donec finibus neque in arcu faucibus," +
         " et placerat justo tristique. Class aptent taciti sociosqu ad litora torquent per conubia nostra," +
         " per inceptos himenaeos. Curabitur gravida varius quam, sed iaculis sapien.",
-      players: [{
-        firstName: 'Jan',
-        lastName: 'Terlinden',
-        DCI: '123456789',
-        email: 'janterlinden@gmx.de'
-      }, {
-        firstName: 'Marc',
-        lastName: 'Petersen',
-        DCI: '123456789',
-        email: 'mep@gmx.de'
-      }, {
-        firstName: 'Marc',
-        lastName: 'Petersen',
-        DCI: '123456789',
-        email: 'mep@gmx.de'
-      }, {
-        firstName: 'Marc',
-        lastName: 'Petersen',
-        DCI: '123456789',
-        email: 'mep@gmx.de'
-      }, {
-        firstName: 'Marc',
-        lastName: 'Petersen',
-        DCI: '123456789',
-        email: 'mep@gmx.de'
-      }, {
-        firstName: 'Marc',
-        lastName: 'Petersen',
-        DCI: '123456789',
-        email: 'mep@gmx.de'
-      }, {
-        firstName: 'Marc',
-        lastName: 'Petersen',
-        DCI: '123456789',
-        email: 'mep@gmx.de'
-      }, {
-        firstName: 'Marc',
-        lastName: 'Petersen',
-        DCI: '123456789',
-        email: 'mep@gmx.de'
-      }, {
-        firstName: 'Marc',
-        lastName: 'Petersen',
-        DCI: '123456789',
-        email: 'mep@gmx.de'
-      }, {
-        firstName: 'Marc',
-        lastName: 'Petersen',
-        DCI: '123456789',
-        email: 'mep@gmx.de'
-      }, {
-        firstName: 'Marc',
-        lastName: 'Petersen',
-        DCI: '123456789',
-        email: 'mep@gmx.de'
-      }, {
-        firstName: 'Marc',
-        lastName: 'Petersen',
-        DCI: '123456789',
-        email: 'mep@gmx.de'
-      }, {
-        firstName: 'Marc',
-        lastName: 'Petersen',
-        DCI: '123456789',
-        email: 'mep@gmx.de'
-      }, {
-        firstName: 'Marc',
-        lastName: 'Petersen',
-        DCI: '123456789',
-        email: 'mep@gmx.de'
-      }, {
-        firstName: 'Marc',
-        lastName: 'Petersen',
-        DCI: '123456789',
-        email: 'mep@gmx.de'
-      }, {
-        firstName: 'Marc',
-        lastName: 'Petersen',
-        DCI: '123456789',
-        email: 'mep@gmx.de'
-      }, {
-        firstName: 'Marc',
-        lastName: 'Petersen',
-        DCI: '123456789',
-        email: 'mep@gmx.de'
-      }, {
-        firstName: 'Marc',
-        lastName: 'Petersen',
-        DCI: '123456789',
-        email: 'mep@gmx.de'
-      }, {
-        firstName: 'Marc',
-        lastName: 'Petersen',
-        DCI: '123456789',
-        email: 'mep@gmx.de'
-      }, {
-        firstName: 'Marc',
-        lastName: 'Petersen',
-        DCI: '123456789',
-        email: 'mep@gmx.de'
-      }, {
-        firstName: 'Marc',
-        lastName: 'Petersen',
-        DCI: '123456789',
-        email: 'mep@gmx.de'
-      }, {
-        firstName: 'Marc',
-        lastName: 'Petersen',
-        DCI: '123456789',
-        email: 'mep@gmx.de'
-      }, {
-        firstName: 'Marc',
-        lastName: 'Petersen',
-        DCI: '123456789',
-        email: 'mep@gmx.de'
-      }, {
-        firstName: 'Marc',
-        lastName: 'Petersen',
-        DCI: '123456789',
-        email: 'mep@gmx.de'
-      }, {
-        firstName: 'Marc',
-        lastName: 'Petersen',
-        DCI: '123456789',
-        email: 'mep@gmx.de'
-      }, {
-        firstName: 'Marc',
-        lastName: 'Petersen',
-        DCI: '123456789',
-        email: 'mep@gmx.de'
-      }, {
-        firstName: 'Marc',
-        lastName: 'Petersen',
-        DCI: '123456789',
-        email: 'mep@gmx.de'
-      }, {
-        firstName: 'Marc',
-        lastName: 'Petersen',
-        DCI: '123456789',
-        email: 'mep@gmx.de'
-      }, {
-        firstName: 'Marc',
-        lastName: 'Petersen',
-        DCI: '123456789',
-        email: 'mep@gmx.de'
-      }, {
-        firstName: 'Marc',
-        lastName: 'Petersen',
-        DCI: '123456789',
-        email: 'mep@gmx.de'
-      }, {
-        firstName: 'Marc',
-        lastName: 'Petersen',
-        DCI: '123456789',
-        email: 'mep@gmx.de'
-      }, {
-        firstName: 'Marc',
-        lastName: 'Petersen',
-        DCI: '123456789',
-        email: 'mep@gmx.de'
-      }, {
-        firstName: 'Marc',
-        lastName: 'Petersen',
-        DCI: '123456789',
-        email: 'mep@gmx.de'
-      }, {
-        firstName: 'Marc',
-        lastName: 'Petersen',
-        DCI: '123456789',
-        email: 'mep@gmx.de'
-      }, {
-        firstName: 'Marc',
-        lastName: 'Petersen',
-        DCI: '123456789',
-        email: 'mep@gmx.de'
-      }, {
-        firstName: 'Marc',
-        lastName: 'Petersen',
-        DCI: '123456789',
-        email: 'mep@gmx.de'
-      }, {
-        firstName: 'Marc',
-        lastName: 'Petersen',
-        DCI: '123456789',
-        email: 'mep@gmx.de'
-      }]
+      players: playerArray
     });
 
     var tournamentArray = [];
@@ -219,8 +44,8 @@ Tournament.find({}).removeAsync()
         title: 'Sealed Tournament - ' + i,
         date: '07.05.2016',
         format: 'Sealed',
-        edition: 'current Edition',
-        rel: 'competitive',
+        edition: 'Current',
+        rel: 'Competitive',
         location: 'Jugendhaus EXXE in Flensburg',
         entryTime: '09:00',
         startTime: '10:00',
@@ -235,12 +60,17 @@ Tournament.find({}).removeAsync()
           firstName: 'Jan',
           lastName: 'Terlinden',
           DCI: '123456789',
-          email: 'janterlinden@gmx.de'
+          email: 'jan@gmail.com'
         }, {
-          firstName: 'Marc',
-          lastName: 'Petersen',
+          firstName: 'Nikolaj',
+          lastName: 'Kielstrup Rasmussen',
           DCI: '123456789',
-          email: 'mep@gmx.de'
+          email: 'nick@gmail.com'
+        }, {
+          firstName: 'Rimon',
+          lastName: 'Bassem Hanna Issa',
+          DCI: '123456789',
+          email: 'rimon@gmail.com'
         }]
       });
     }

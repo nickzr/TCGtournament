@@ -5,16 +5,22 @@
 </md-content>
 
 <md-sidenav class="md-sidenav-right" md-component-id="right">
-  <md-content style="height:85%; border-bottom: 1px solid #E5E5E5;">
+  <md-content class="chat-content" scroll-glue>
     <md-list>
       <md-list-item ng-repeat="message in messages">
-        <p>
-          {{message.user}}: {{message.text}}
-        </p>
+        <div layout="row">
+          <p><b>{{message.user}}</b>: {{message.text}}</p>
+          <div ng-if="isAdmin()">
+            <md-button ng-click="deleteMessage(message)" class="md-icon-button" aria-label="Edit">
+              <i class="fa fa-close"></i>
+              <md-tooltip md-direction="down">Delete</md-tooltip>
+            </md-button>
+          </div>
+        </div>
       </md-list-item>
     </md-list>
   </md-content>
-  <md-content style="height:15%;" ng-controller="RightCtrl">
+  <md-content class="chat-input" ng-controller="RightCtrl">
     <form>
       <md-input-container class="md-block" style="margin-bottom:-20px;">
         <label for="messageText">Message</label>

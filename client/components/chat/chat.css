@@ -4,23 +4,32 @@
   }
 }
 
-.btn-chat{
-  position:fixed;
-  bottom:0px;
-  right:0px;
-
+.chat-content{
+  height:85%;
+  border-bottom: 1px solid #E5E5E5;
+}
+.chat-content::-webkit-scrollbar {
+  display: none;
+}
+.chat-input{
+  height:15%;
+  overflow: hidden;
+}
+.btn-chat {
+  position: fixed;
+  bottom: 0px;
+  right: 0px;
   z-index: 1;
-
   height: 50px;
   width: 50px;
   min-width: 0px;
   min-height: 0px
 }
-
-.md-sidenav-right{
+.md-sidenav-right {
   border-left: 1px solid #E5E5E5;
   background-color: #fff;
   margin-top: 50px;
-  position:fixed;
+  position: fixed;
   overflow-y: hidden;
+  max-width: 280px;
 }
