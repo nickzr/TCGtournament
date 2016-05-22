@@ -9,12 +9,12 @@ angular.module('tcgtournamentApp')
       socket.syncUpdates('message', $scope.messages);
     });
 
-
     $scope.newMessage = {};
 
     $scope.sendMessage = function(keyEvent) {
-      if (keyEvent.which === 13)
-      {
+      if (keyEvent.which === 13) {
+        var timeStamp = Date.now();
+        $scope.newMessage.timestamp = timeStamp;
         ChatService.save($scope.newMessage, function() {
           $scope.newMessage.text = "";
         });
@@ -44,8 +44,6 @@ angular.module('tcgtournamentApp')
 .controller('RightCtrl', function($scope, $timeout, $mdSidenav, $log) {
   $scope.close = function() {
     $mdSidenav('right').close()
-      .then(function() {
-        $log.debug("close RIGHT is done");
-      });
+      .then(function() {});
   };
 });

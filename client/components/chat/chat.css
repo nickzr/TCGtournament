@@ -1,18 +1,23 @@
+/**
+* Deactivates the standard md-sidenav close on focus loss
+*/
 @media {
   md-backdrop.md-sidenav-backdrop {
     display: none;
   }
 }
-
-.chat-content{
-  height:85%;
-  border-bottom: 1px solid #E5E5E5;
-}
+/**
+* Deactivates the chat scrollbar
+*/
 .chat-content::-webkit-scrollbar {
   display: none;
 }
-.chat-input{
-  height:15%;
+.chat-content {
+  height: 85%;
+  border-bottom: 1px solid #E5E5E5;
+}
+.chat-input {
+  height: 15%;
   overflow: hidden;
 }
 .btn-chat {

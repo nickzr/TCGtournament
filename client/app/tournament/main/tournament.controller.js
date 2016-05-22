@@ -61,7 +61,7 @@ angular.module('tcgtournamentApp')
             .action('OK')
             .highlightAction(false)
             .position('bottom right');
-            $mdToast.show(toast);
+          $mdToast.show(toast);
           form.$setPristine(); //Clears the form
           form.$setUntouched(); //Sets the form to be untouched
         });

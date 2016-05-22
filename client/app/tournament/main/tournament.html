@@ -1,7 +1,6 @@
 <md-content layout-padding flex-offset="20" flex="60">
-  <md-header class="md-no-sticky">Tournaments</md-header>
-  <hr>
   <div layout="row" layout-wrap layout-align="center">
+    <!--gridlist-->
     <md-card flex="30" dir-paginate="tournament in tournaments | itemsPerPage: tournamentsPerPage" total-items="totalTournaments" current-page="pagination.current">
       <div ng-if="isAdmin()" layout="row" layout-align="end">
         <md-button ng-click="deleteTournament(tournament)" class="md-icon-button" aria-label="Delete">
@@ -11,8 +10,8 @@
       </div>
       <hr>
       <div layout="row" layout-align="center">
-          <i ng-if="tournament.format == 'Sealed'" class="fa fa-trophy fa-4x"></i>
-          <i ng-if="tournament.format == 'Standard'" class="fa fa-legal fa-4x"></i>
+        <i ng-if="tournament.format == 'Sealed'" class="fa fa-trophy fa-4x"></i>
+        <i ng-if="tournament.format == 'Standard'" class="fa fa-legal fa-4x"></i>
       </div>
       <md-card-content style="padding-bottom:30px;">
         <center>
@@ -32,6 +31,7 @@
   </div>
 </md-content>
 
+<!--create-->
 <md-content layout-padding flex-offset="30" flex="40" ng-if="isAdmin()">
   <md-card>
     <form name="newTournamentForm" style="margin-bottom:10px;">

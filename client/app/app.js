@@ -12,8 +12,8 @@ angular.module('tcgtournamentApp', [
     'ui.bootstrap',
     'validation.match',
     'ngMaterial',
-    'angularUtils.directives.dirPagination',
-    'luegg.directives'
+    'angularUtils.directives.dirPagination', //frontend pagination
+    'luegg.directives' //scrollglue
   ])
   .config(function($urlRouterProvider, $locationProvider, $mdThemingProvider) {
     $urlRouterProvider
@@ -21,6 +21,7 @@ angular.module('tcgtournamentApp', [
 
     $locationProvider.html5Mode(true);
 
+    //overriting the A100 color to change the background color of angular material components
     var bg = $mdThemingProvider.extendPalette('grey', {
       'A100': '#F8F8F8'
     });

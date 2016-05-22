@@ -2,7 +2,7 @@
 
 angular.module('tcgtournamentApp')
   .factory('ChatService', function($resource) {
-      return $resource('/api/messages/:id', {
-          id: '@id'
-      });
+    return $resource('/api/messages/:id', {
+      id: '@id'
+    });
   });

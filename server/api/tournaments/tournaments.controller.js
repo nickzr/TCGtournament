@@ -66,6 +66,7 @@ function handleError(res, statusCode) {
 //     .catch(handleError(res));
 // }
 
+// Gets a limited list of Tournaments based on the pagination request 
 export function index(req, res) {
   //Create the query
   var query = {};
@@ -95,7 +96,6 @@ export function index(req, res) {
       var options = {
         select: 'title date format edition rel location entryTime startTime price info players',
         sort: req.query.sortBy,
-        populate: {path: 'owner', select: 'name email'}, //?
         offset: offset,
         limit: parseFloat(req.query.limit)
       };

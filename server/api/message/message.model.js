@@ -6,6 +6,7 @@ var MessageSchema = new mongoose.Schema({
   user: String,
   text: String,
   timestamp: Date,
+  //automatically delete from database after expiretime
   createdAt: {
     type: Date,
     expireAfterSeconds: 90
