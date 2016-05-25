@@ -66,7 +66,7 @@ function handleError(res, statusCode) {
 //     .catch(handleError(res));
 // }
 
-// Gets a limited list of Tournaments based on the pagination request 
+// Gets a limited list of Tournaments based on the pagination request
 export function index(req, res) {
   //Create the query
   var query = {};
@@ -110,7 +110,7 @@ export function index(req, res) {
 
 // Gets a single Tournament from the DB
 export function show(req, res) {
-  Tournament.findById(req.params.id).populate('owner', 'name email')
+  Tournament.findById(req.params.id)
     .execAsync()
     .then(handleEntityNotFound(res))
     .then(respondWithResult(res))

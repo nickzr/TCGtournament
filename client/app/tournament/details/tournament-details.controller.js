@@ -5,6 +5,7 @@ angular.module('tcgtournamentApp')
     $scope.isAdmin = Auth.isAdmin;
     $scope.newPlayer = {};
     $scope.tournament = {};
+    $scope.currentPage = 1;
 
     //Using the tournament service, we load the tournament with the specific ID and save it to the scope
     TournamentService.get({

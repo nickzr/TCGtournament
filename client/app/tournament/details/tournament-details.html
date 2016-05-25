@@ -125,7 +125,7 @@
               <i class="fa fa-floppy-o"></i> Save
             </md-button>
             <md-button aria-label="Undo" ng-click="undoPlayerEdit()" class="md-raised md-warning">
-              <i class="fa fa-undo"></i> Undo edit
+              <i class="fa fa-undo"></i> Cancel
             </md-button>
           </div>
         </form>
@@ -140,9 +140,9 @@
         <div layout="column">
           <h3 flex pull-right>Participants</h3>
           <md-list>
-            <md-list-item aria-label="Player" ng-click="goToPlayer(player, $event)" dir-paginate="player in tournament.players | itemsPerPage:10">
+            <md-list-item aria-label="Player" ng-click="goToPlayer(player, $event)" dir-paginate="player in tournament.players | itemsPerPage:10 " current-page="currentPage">
               <div flex flex-sm="100" flex-xs="100" layout="row">
-                <p flex pull-right="10">{{$index + 1}}. {{player.firstName}} {{player.lastName}}</p>
+                <p flex pull-right="10">{{($index + 1) + (currentPage - 1) * 10}}. {{player.firstName}} {{player.lastName}}</p>
                 <div flex="5" ng-if="isAdmin()">
                   <md-button ng-click="editPlayer(player)" class="md-icon-button" aria-label="Edit">
                     <i class="fa fa-pencil"></i>
